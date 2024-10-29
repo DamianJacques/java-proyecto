@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.coderhouse.models.Cliente;
 import com.coderhouse.models.Producto;
+import com.coderhouse.models.Venta;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -28,5 +29,11 @@ public class DaoFactory {
 		
 		em.persist(producto);
 		
+	}
+	
+	@Transactional
+	public void createVenta(Venta venta) {
+		
+		em.persist(venta);
 	}
 }

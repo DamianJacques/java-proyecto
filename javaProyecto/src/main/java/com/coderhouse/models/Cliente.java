@@ -9,7 +9,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,8 +31,10 @@ public class Cliente {
 	private String domicilio;
 	
 	
-	@ManyToMany(mappedBy = "clientes", fetch = FetchType.EAGER)
-	private List<Producto> productos = new ArrayList<>();
+	@OneToMany(mappedBy = "clientes", fetch = FetchType.EAGER)
+	private List<Venta> Ventas = new ArrayList<>();
+	
+	
 
 	public Cliente() {
 		super();
@@ -46,6 +48,7 @@ public class Cliente {
 		this.apellido = apellido;
 		this.cuit = cuit;
 		this.domicilio = domicilio;
+		
 	}
 
 
@@ -99,21 +102,16 @@ public class Cliente {
 	}
 
 
-	public List<Producto> getProductos() {
-		return productos;
-	}
-
-
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
-	}
+	
 
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cuit=" + cuit + ", domicilio="
-				+ domicilio + ", productos=" + productos + "]";
+				+ domicilio + "]";
 	}
+
+
 
 	
 }
